@@ -43,4 +43,26 @@ public class CarController {
             return -1;
         }
     }
+
+    @PatchMapping("/{id}")
+    public int partiallyUpdate(@PathVariable("id") int id, @RequestBody Car updatedCar) {
+        Car car = carRepository.getById(id);
+
+        if (car != null) {
+            car.setBrand(updatedCar.getBrand());
+            car.setModel(updatedCar.getModel());
+            car.setYear(updatedCar.getYear());
+
+            carRepository.update(car);
+
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public int delete(@PathVariable("id") int id) {
+        return carRepository.delete(id);
+    }
 }

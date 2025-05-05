@@ -36,4 +36,8 @@ public class CarRepository {
         return jdbcTemplate.update("UPDATE cars SET brand=?, model=?, year=? WHERE id=?",
                 car.getBrand(),car.getModel(),car.getYear(),car.getId());
     }
+
+    public int delete(int id) {
+        return jdbcTemplate.update("DELETE FROM cars WHERE id=?",id);
+    }
 }
